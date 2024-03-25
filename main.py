@@ -17,7 +17,7 @@ db = FAISS.load_local("faiss", embedding )
 retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 15, "lambda_mult": 0.5})
 
 #Instance for Qa_inference
-api_key = "LtI5T8ieAIpJBcuUbcby4s7km38V3edo"
+api_key = "fuck ya lil hoe"
 qa = Qa_inference(retriever=retriever, api_key=api_key)
 
 
