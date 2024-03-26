@@ -24,10 +24,9 @@ with open("API_KEY.txt", "r") as fichier:
 app = FastAPI()
 
 # Initialize Supabase client
-supabase_url = 'https://hnzsxncvfflwtsrljlhd.supabase.co'
-supabase_anon_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuenN4bmN2ZmZsd3RzcmxqbGhkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MTE0NTQ5OTgsImV4cCI6MjAyNzAzMDk5OH0.Sm5qWWv7jmxmCx4RH66Q662xqAGW4M5H05AoEEF7Dh4'
-supabase_service_role_key = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhuenN4bmN2ZmZsd3RzcmxqbGhkIiwicm9sZSI6InNlcnZpY2Vfcm9sZSIsImlhdCI6MTcxMTQ1NDk5OCwiZXhwIjoyMDI3MDMwOTk4fQ.wy5dNMuF4JrByI2X26SJUtaqm6sP4c7A214JN17dLCc'
-supabase_client = supabase.create_client(supabase_url, supabase_anon_key)
+supabase_url = ''
+supabase_anon_key = ''
+supabase_service_role_key = ''
 
 
 # Define a rate limiter with a specific limit per user
