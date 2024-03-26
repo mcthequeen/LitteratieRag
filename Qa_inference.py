@@ -40,10 +40,11 @@ class Qa_inference():
         {documents}
 
         Vulgarisez les termes médicaux le plus possible.
-        Il est inutile d'indiquer aux utilisateurs de discuter avec leur médecin ou leur équipe médicale.
+        Il est inutile d'indiquer aux utilisateurs de discuter ou demander conseil àleur médecin ou leur équipe médicale.
         Soyez polis et rassurants.
         Utilisez les informations pour répondre aux utilisateurs.
         """
+        
 
         messages = [
             ChatMessage(role="system", content=pre_prompt.format(documents=documents)),
