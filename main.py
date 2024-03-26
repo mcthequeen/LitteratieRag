@@ -12,21 +12,25 @@ from Qa_inference import Qa_inference
 #Supabase module
 import supabase
 
+#Environ
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+api_key = os.getenv("MISTRAL_API_KEY") 
 
 
 
-#Get API key for mistral
-with open("API_KEY.txt", "r") as fichier:
-    api_key = fichier.read()
-    
+
     
 #FastAPI instance    
 app = FastAPI()
 
 # Initialize Supabase client
-supabase_url = ''
-supabase_anon_key = ''
-supabase_service_role_key = ''
+supabase_url = os.getenv("supabase_url")
+supabase_anon_key = os.getenv("supabase_anon_key")
+supabase_service_role_key = os.getenv("supabase_service_role_key")
 
 
 # Define a rate limiter with a specific limit per user
