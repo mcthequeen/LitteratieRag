@@ -10,18 +10,17 @@ from Qa_inference import Qa_inference
 
 
 #Environ
-from dotenv import load_dotenv
+from decouple import config 
 import os
-
-load_dotenv()
-
 
 #FastAPI instance    
 app = FastAPI()
 
-supabase_url = os.getenv("supabase_url")
+supabase_url = config("SUPABASE_URL")
+
+print(supabase_url)
 #supabase_anon_key = os.getenv("supabase_anon_key")
-supabase_service_role_key = os.getenv("supabase_service_role_key")
+supabase_service_role_key = config("SUPABASE_SERVICE_ROLE_KEY")
 
 #supabase = create_client(supabase_url, supabase_anon_key)
 admin_supabase = create_client(supabase_url,supabase_service_role_key)
@@ -32,7 +31,7 @@ print("#Loading embedding retriever")
 embedding = HuggingFaceEmbeddings(model_name="dangvantuan/sentence-camembert-large")
 
 #Loading db
-db = FAISS.load_local("faiss", embedding)
+db = FAISS.load_local("faiss", embedding, allow_dangerous_deserialization =True)
 retriever = db.as_retriever(search_type="mmr", search_kwargs={"k": 10, "lambda_mult": 0.5})
 
 #Instance for Qa_inference
@@ -58,16 +57,21 @@ class UserCreate(BaseModel):
     jwt: str
     query: str
 
-
-@app.post('/inference')
-async def inference(data : UserCreate):
-    user_query= data.query
-    jwt = data.jwt
-    if verify_jwt(jwt):
+#data : UserCreate
+@app.get('/inference')
+async def inference():
+    #user_query= data.query
+    user_query = "C'est quoi le covid ?"
+    print(user_query)
+    #jwt = data.jwt
+    #verify_jwt(jwt)
+    On = True
+    if On:
         qa.user_query += user_query
         documents_string, _ = qa.get_documents()
 
         response = await qa.get_llm_response(query=user_query, documents=documents_string)
+        print(response)
 
         return response
     else:
